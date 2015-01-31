@@ -6,7 +6,6 @@ var app = angular.module('channel', []);
 app.controller('channelController', function($rootScope, $scope, $window, $firebase, chatApi, $interval, youtubeEmbedUtils, $routeParams, $http){
 	if ($routeParams.channelID) {
 		var channelID = $routeParams.channelID;
-		// console.log(channelID);
 	}
 
 	// Chat FireBase information
@@ -14,13 +13,21 @@ app.controller('channelController', function($rootScope, $scope, $window, $fireb
 	var messages = $firebase(ref);
 	// This pulls the entire list of messages
 	var messageObj = messages.$asObject();
-	$scope.messages = messageObj;
 
-	messageObj.$bindTo($scope, "messages").then(function() {
-   		// console.log($scope.messages); // { foo: "bar" }
-   		// $scope.data.foo = "baz";  // will be saved to Firebase
-   		//ref.set({foo: "baz"});   // this would update Firebase and $scope.data
+	$scope.messages = {};
+
+	messageObj.$bindTo($scope, "messages").then(function() {});
+
+	ref.on("value", function (snapshot) {
+		snapshot.forEach(function (childSnapshot) {
+			if (childSnapshot.val().channel !== $scope.currentChannel) {
+				$scope.messages.push(childSnapshot.val());
+			}
+		});
+	}, function (errorObject) {
+		console.log("The read failed: " + errorObject.code);
 	});
+
 	// Video FireBase
 	var vid = new Firebase("https://blinding-heat-2195.firebaseio.com/");
 	var videos = $firebase(vid);
@@ -29,19 +36,20 @@ app.controller('channelController', function($rootScope, $scope, $window, $fireb
 	$scope.videos = videoObj;
 
 	videoObj.$bindTo($scope, "videos").then(function() {
-   		// console.log($scope.videos); // { foo: "bar" }
+   		// //console.log($scope.videos); // { foo: "bar" }
    		// $scope.data.foo = "baz";  // will be saved to Firebase
    		//ref.set({foo: "baz"});   // this would update Firebase and $scope.data
 	});
 
 	var timeElapsed = 0;
-	// for(var i = 0; i < $scope.videos.length; i++) {
-	// 	if($scope.videos[i].channelName == $scope.currentChannel) {
-	// 		// console.log("@@@ " + $scope.videos[i]);
-	// 		$scope.currentVideo = $scope.videos[i];
-	// 		timeElapsed = Date.now() - $scope.currentVideo.playStartTime;
-	// 	}
-	// }
+
+	for(var i = 0; i < $scope.videos.length; i++) {
+		if ($scope.videos[i].channelName == $scope.currentChannel) {
+			// //console.log("@@@ " + $scope.videos[i]);
+			$scope.currentVideo = $scope.videos[i];
+			timeElapsed = Date.now() - $scope.currentVideo.playStartTime;
+		}
+	}
 
 	//Channel Firebase Info
 	// Video FireBase
@@ -53,7 +61,7 @@ app.controller('channelController', function($rootScope, $scope, $window, $fireb
 	console.log('curChannel',$scope.curChannel);
 
 	chanObj.$bindTo($scope, "curChannel").then(function() {
-   		// console.log($scope.videos); // { foo: "bar" }
+   		// //console.log($scope.videos); // { foo: "bar" }
    		// $scope.data.foo = "baz";  // will be saved to Firebase
    		//ref.set({foo: "baz"});   // this would update Firebase and $scope.data
 	});
@@ -105,6 +113,7 @@ app.controller('channelController', function($rootScope, $scope, $window, $fireb
 	$scope.youtubeVideos = [];
 	// $scope.dataVideos = data.videos;
 	$http.get('js/data.json').success(function(data) {
+
 		data.videos.forEach(function(dataVideo, index, data) {
 			if(dataVideo.channelName == $scope.currentChannel) {
 				// $scope.youtubeVideos.push(dataVideo.url);
@@ -166,16 +175,20 @@ app.controller('channelController', function($rootScope, $scope, $window, $fireb
 	var channelObj = channels.$asObject();
 	$scope.channels = channelObj;
 	// As you can see the push created something with a unqiue identifier so to filter we need channelName and timestamp
-	console.log($scope.channels);
+	//console.log($scope.channels);
 
 	channelObj.$bindTo($scope, "channels").then(function() {
-   		console.log($scope.channels); // { foo: "bar" }
+   		//console.log($scope.channels); // { foo: "bar" }
    		// $scope.data.foo = "baz";  // will be saved to Firebase
    		//channelRef.set({foo: "baz"});   // this would update Firebase and $scope.data
 	});
 
 	$scope.createChannel = function (channel) {
-		channels.$push(channel={name: channel.name, description: channel.description, date_created: Date.now() });
+		channels.$push({})
+			.then(function (ref) {
+				//console.log(ref);
+				channels.$set(ref.key(),{name: channel.name, description: channel.description, date_created: Date.now(), id: ref.key()});
+			});
 	};
 
 
@@ -186,17 +199,17 @@ app.controller('channelController', function($rootScope, $scope, $window, $fireb
 		else{
 			$scope.showSideBar = $scope.sideBarHideText;
 		}
-		console.log($window.innerHeight);
+		//console.log($window.innerHeight);
 	};
 
 	$scope.clickLike = function(){
 		//do something when like is pressed
-		console.log("clicked like");
+		//console.log("clicked like");
 
 	};
 	$scope.clickDislike = function(){
 		//do something when like is pressed
-		console.log("clicked dislike");
+		//console.log("clicked dislike");
 
 	};
 
@@ -212,12 +225,12 @@ app.controller('channelController', function($rootScope, $scope, $window, $fireb
 
 	$scope.addVideo = function(){
 		videos.$push({channelName: $scope.currentChannel,timeStamp: new Date(),url: $scope.inputVideoURL,youtubeID: 0,playStartTime: -1, videoLength: 0, submitter: $scope.currentUser, likes: 0, dislikes: 0});
-		console.log($scope.inputText);
+		//console.log($scope.inputText);
 	};
 
 	$scope.submitMessage = function(){
 		messages.$push({channelName: $scope.currentChannel,text: $scope.inputText,submitter: $scope.currentUser,timeStamp: new Date()});
-		console.log($scope.inputText);
+		//console.log($scope.inputText);
 	};
 });
 
