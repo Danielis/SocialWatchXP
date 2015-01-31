@@ -133,7 +133,7 @@ angular.module('youtube-player', ['ng'])
 
     		// YouTube calls callbacks outside of digest cycle
     		function applyBroadcast() {
-    		    var args = Array.prototype.slice.call(arguments);
+                var args = Array.prototype.slice.call(arguments);
     		    scope.$apply(function() {
     		        scope.$emit.apply(scope, args);
     		    });

@@ -49,8 +49,8 @@
     <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <p>Enter in a YouTube link</p>
-            <input type="text">
+            <p>Enter in a YouTube link</p>       
+            <input data-ng-model="inputVideoURL" type="text">
             <button ng-click="addVideo()" type="button" class="btn btn-default">add video</button>
         </div>
       </div>
@@ -60,7 +60,7 @@
     <div id="dislikeBar" ng-click="clickDislike()"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></div>
 
     <div id="video" style="pointer-events:none;">
-        <youtube-player player-vars="youtubeVars" player-height="videoHeight" player-width="videoWidth"></youtube-player>
+        <youtube-player video-url="youtubeUrl" player-vars="youtubeVars" player-height="videoHeight" player-width="videoWidth"></youtube-player>
     </div>
 </body>
 </html>
