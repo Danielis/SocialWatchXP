@@ -3,8 +3,12 @@
 // ng-app grabs this in index.html
 var app = angular.module('channel', []);
 
-app.controller('channelController', function($scope, $routeParams, $window, $firebase, chatApi, $interval, youtubeEmbedUtils){
-	
+app.controller('channelController', function($scope, $window, $firebase, chatApi, $interval, youtubeEmbedUtils, $routeParams){
+	if ($routeParams.channelID) {
+		var channelID = $routeParams.channelID;
+		console.log(channelID);
+	}
+
 	// Chat FireBase information
 	var ref = new Firebase("https://shining-heat-6104.firebaseio.com/");
 	var messages = $firebase(ref);
@@ -30,6 +34,19 @@ app.controller('channelController', function($scope, $routeParams, $window, $fir
    		//ref.set({foo: "baz"});   // this would update Firebase and $scope.data
 	});
 
+	var timeElapsed = 0;
+	for(var i = 0; i < $scope.videos.length; i++) {
+		if ($scope.videos[i].channelName == $scope.currentChannel) {
+			console.log("@@@ " + $scope.videos[i]);
+			$scope.currentVideo = $scope.videos[i];
+			timeElapsed = Date.now() - $scope.currentVideo.playStartTime;
+		}
+	}
+
+
+
+
+
 	//Channel Firebase Info
 	// Video FireBase
 	var chan = new Firebase("https://shining-heat-9627.firebaseio.com/");
@@ -46,7 +63,13 @@ app.controller('channelController', function($scope, $routeParams, $window, $fir
 	//messages.$remove();
 
 	$scope.inputText = "";
-	$scope.currentChannel = "Lakers";  // Update with params for current channel name and use for videos and chat to be correct
+	if ($routeParams.channelID) {
+		var channelRef = new Firebase("https://shining-heat-9627.firebaseio.com/" + $routeParams.channelID).once('value', function(snap) {
+			$scope.currentChannel = snap.val().name;
+		});
+	} else {
+		$scope.currentChannel = "Lakers";  // Update with params for current channel name and use for videos and chat to be correct
+	}
 	$scope.currentUser = "Daniel Silva";
 
 	$scope.inputVideoURL = "";
@@ -86,7 +109,8 @@ app.controller('channelController', function($scope, $routeParams, $window, $fir
 		controls: 0,
 		autoplay: 1,
 		disablekb: 1,
-		showinfo: 0
+		showinfo: 0,
+		start: timeElapsed
 	};
 
 	$scope.$on('youtube.player.ended', function($event, player) {
@@ -94,7 +118,31 @@ app.controller('channelController', function($scope, $routeParams, $window, $fir
 		if($scope.videoCounter < $scope.youtubeVideos.length) {
 			$scope.youtubeUrl = $scope.youtubeVideos[$scope.videoCounter];
 		}
+
+		timeElapsed = 0;
 	});
+
+
+
+	var channelRef = new Firebase("https://shining-heat-9627.firebaseio.com/");
+	var channels = $firebase(channelRef);
+	// We don't want this here as it pushes this every time controller loads
+	// messages.$push(message={channelName:"Lakers",text: "Welcome!",submitter: "Daniel Silva",time: new Date()});
+	// This pulls the entire list of messages
+	var channelObj = channels.$asObject();
+	$scope.channels = channelObj;
+	// As you can see the push created something with a unqiue identifier so to filter we need channelName and timestamp
+	console.log($scope.channels);
+
+	channelObj.$bindTo($scope, "channels").then(function() {
+   		console.log($scope.channels); // { foo: "bar" }
+   		// $scope.data.foo = "baz";  // will be saved to Firebase
+   		//channelRef.set({foo: "baz"});   // this would update Firebase and $scope.data
+	});
+
+	$scope.createChannel = function (channel) {
+		channels.$push(channel={name: channel.name, description: channel.description, date_created: Date.now() });
+	};
 
 
 	$scope.toggleSideBar = function(){
