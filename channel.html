@@ -9,17 +9,77 @@
     <link rel="stylesheet" href="css/channel.css">
 </head>
 <body data-ng-controller="channelController">
-    <div class="topNav">
-        <div class="sideBarToggle">
-            <button type="button" class="btn btn-default" aria-label="Left Align">
-              <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-            </button>
-        </div>
-        <div class="loginMenu">
+    <div class="sidenav">
+      <div class="sidenav-search">
+        <form id="movie-search-form">
+          <input type="text" placeholder="Search movies..." id="movie-search">
+        </form>
+      </div>
+      <div class="sidenav-navigation">
+        <div class="sidenav-main">
+          <nav>
+            <header><h2>Main</h2></header>
+            <ul>
+              <li class="sidenav-option sidenav-discover sidenav-selected">
+                <a href="" alt="Discover Section">
+                  Discover
+                </a>
+              </li>
+              <li class="sidenav-option sidenav-new-releases">
+                <a href="" alt="New Releases Section">
+                  New Releases
+                </a>
+              </li>
+              <li class="sidenav-option sidenav-top-charts">
+                <a href="" alt="New Releases Section">
+                  Top Charts
+                </a>
+              </li>
+              <li class="sidenav-option sidenav-history">
+                <a href="" alt="New Releases Section">
+                  Watch History
+                </a>
+              </li>
+              <li class="sidenav-option sidenav-new-releases">
+                <a href="" alt="New Releases Section">
+                  Favorites
+                </a>
+              </li>
+            </ul>
 
+            <h2>Movie Circles</h2>
+            <ul>
+              <li class="sidenav-option movie-circle">
+                <a href="" alt="Movies to watch on plane ride to Florida.">
+                  Plane Trip
+                </a>
+              </li>
+              <li class="sidenav-option movie-circle">
+                <a href="" alt="Movies that I can't wait to watch.">
+                  Must Sees
+                </a>
+              </li>
+            </ul>
+
+            <h2>Collaborated Circles</h2>
+            <ul>
+              <li class="sidenav-option collab-circle">
+                <a href="" alt="">
+                  Best of the '90s
+                </a>
+              </li>
+              <li class="sidenav-option collab-circle">
+                <a href="" alt="">
+                  The Classics
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
+      </div>
     </div>
-    <div id="sideBar" ng-hide="{{!showSideBar}}">
+    
+    <div id="sideBar">
         <ul>
           <li ng-repeat="channel in userData.Channels track by $index">
             {{channel}}
