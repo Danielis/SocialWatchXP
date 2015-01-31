@@ -3,7 +3,15 @@
 // ng-app grabs this in index.html
 var app = angular.module('channel', []);
 
-app.controller('channelController', function($scope, $window, $firebase, chatApi, $interval, youtubeEmbedUtils){
+app.controller('channelController', function($scope, $window, $firebase, chatApi, $interval, youtubeEmbedUtils, $routeParams){
+	if ($routeParams.channelID) {
+		var channelID = $routeParams.channelID;
+		console.log(channelID);
+
+		var channelRef = new Firebase("https://shining-heat-9627.firebaseio.com/" + channelID).once('value', function(snap) {
+			$scope.currentChannel = snap.val().name;
+		});
+	}
 
 	var ref = new Firebase("https://shining-heat-6104.firebaseio.com/");
 	var messages = $firebase(ref);
@@ -23,7 +31,6 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 	//messages.$remove();
 
 	$scope.inputText = "";
-	$scope.currentChannel = "Lakers";
 	$scope.currentUser = "Daniel Silva";
 
 

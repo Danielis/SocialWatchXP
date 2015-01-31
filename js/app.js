@@ -6,7 +6,7 @@ app.config(function($routeProvider) {
 			templateUrl: 'main.html',
 			controller: 'mainController'
 		})
-		.when('/channel', {
+		.when('/channel/:channelID', {
 			templateUrl: 'channel.html',
 			controller: 'channelController'
 		})
