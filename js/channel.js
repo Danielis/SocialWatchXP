@@ -91,9 +91,9 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 		console.log(data);
 		console.log('currentChannel',$scope.currentChannel);
 		data.videos.forEach(function(dataVideo, index, data) {
-			console.log('video',dataVideo);
-
-			$scope.youtubeVideos.push(dataVideo.url);
+			if(dataVideo.channelName == $scope.currentChannel) {
+				$scope.youtubeVideos.push(dataVideo.url);
+			}
 		});
 
 		$scope.videoCounter = 0;
@@ -126,10 +126,6 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 			timeElapsed = 0;
 		});
 	});
-
-
-
-
 
 	var channelRef = new Firebase("https://shining-heat-9627.firebaseio.com/");
 	var channels = $firebase(channelRef);
