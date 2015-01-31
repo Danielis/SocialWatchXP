@@ -5,19 +5,20 @@ body{
 }
 
 #sideBar{
-	width:  5%;
+	width:  2%;
 	background-color: #333333;
 	height: 45%;
 	position:fixed;
 	/*background-color: #333333;*/
 	float: left;
 	color: white;
-	opacity: 0.0;
+	opacity: 0.1;
 	border-radius: 4px;
 	padding: 10px 10px 10px 10px;
 	/*border-right: 1px white solid;*/
 	margin-top: 10%;
-	margin-left: 95%;
+	margin-left: 98%;
+	overflow: hidden;
 }
 
 #sideBar:hover{
@@ -75,6 +76,14 @@ a:hover{
 #content{
 	
 }
+
+.color-wrapper{
+	opacity: 0
+}
+.color-wrapper:hover{
+	opacity: 1;
+}
+
 
 .topNav{
 	height: 40px;

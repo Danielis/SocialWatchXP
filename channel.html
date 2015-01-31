@@ -3,20 +3,20 @@
 <head >
     <link rel="stylesheet" href="css/channel.css">
 </head>
-<body >
-
-    
+<body >  
     <div id="sideBar">
+      <div class="color-wrapper">
         <h1>Other Channels</h1>
 
           <div ng-repeat="channel in userData.Channels track by $index">
             <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
             {{channel}}
           </div>
-
+      </div>
     </div>
 
     <div id="rightBar">
+      <div class"color-wrapper">
         <p>Up Next:</p>
           <div ng-repeat="video in userData.NextVideos track by $index">
             <span class="glyphicon glyphicon-expand" aria-hidden="true"></span>
@@ -25,9 +25,11 @@
        <button ng-click="toggleModal()" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
+        </div>
     </div>
 
     <div id="chatBar">
+      <div class="color-wrapper">
         <h1>Chat</h1>
         <input data-ng-model="inputText" type="text">
         <button ng-click="submitMessage()" type="button" class="btn btn-default">
@@ -37,14 +39,8 @@
         <span class="name"> {{message.submitter}}:</span>
         <span class="italic">{{message.text}}</span>
         </div>
+        </div>
     </div>
-
-    <!--
-    <div id="modal" style="{{hideModal}}">
-        <p>test: </p><input type="text">
-        <button ng-click="addVideo()" type="button" class="btn btn-default">add video</button>
-        <button ng-click="toggleModal()" type="button" class="btn btn-default">exit</button>
-    </div>-->
 
     <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">

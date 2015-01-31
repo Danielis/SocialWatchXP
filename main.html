@@ -2,6 +2,7 @@
 
     
     <div id="sideBar" style="{{showSideBar}}">
+      <div class="color-wrapper">
         <h4> My Channels </h4>
         
             <div ng-repeat="channel in userData.MyChannels track by $index">
@@ -11,6 +12,7 @@
             <div ng-repeat="channel in userData.Channels track by $index">
               <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> {{channel}}
             </div>
+      </div>
     </div>
 
     <div style="{{channelStyle}}" id="Content">

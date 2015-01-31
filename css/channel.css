@@ -12,19 +12,20 @@ input {
 	color: black;
 }
 #sideBar{
-	width:  5%;
+	width: 1%;
 	background-color: #1c1c1c;
 	height: 40%;
 	position:fixed;
 	/*background-color: #333333;*/
 	float: left;
 	color: white;
-	opacity: 0.0;
+	opacity: 0.1;
 	border-radius: 4px;
 	padding: 10px 10px 10px 10px;
 	/*border-right: 1px white solid;*/
 	margin-top: 0%;
-	margin-left: 95%;
+	margin-left: 99%;
+	overflow: hidden;
 }
 
 #sideBar:hover{
@@ -56,20 +57,30 @@ input {
 }
 
 #chatBar{
-	width:  5%;
+	width: 1%;
 	background-color: #1c1c1c;
 	height: 90%;
 	position:fixed;
 	float: left;
 	color: white;
-	opacity: 0.0;
+	opacity: 0.1;
 	border-radius: 4px;
 	padding: 10px 10px 10px 10px;
 	margin-top: 0%;
+	overflow: hidden;
+
 }
+.color-wrapper{
+	opacity: .5;
+}
+.color-wrapper:hover{
+	opacity: 1;
+}
+
 #chatBar:hover{
 	width:  15%;
 	opacity: 0.5;
+	visibility: visible;
 }
 
 /*like bar*/
@@ -123,16 +134,17 @@ input {
 #rightBar{
 	height: 35%;
 	position:fixed;
-	width: 5%;
+	width: 1%;
 	background-color: #333333;
 	float: right;
 	color: white;
-	opacity: 0.0;
-	margin-left: 95%;
+	opacity: 0.1;
+	margin-left: 99%;
 	margin-top: 31%;
 	text-align: center;
 	border-radius: 2px;
 	padding: 5px 5px 5px 5px;
+	overflow: hidden;
 }
 
 #rightBar p{
@@ -188,13 +200,6 @@ input {
 	background-color: #333333;
 }
 
-.topNav button{
-	margin-left: 10px;
-	margin-top: 10px;
-}
-.sideBarToggle{
-
-}
 .loginMenu{
 
 }
