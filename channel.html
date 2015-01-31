@@ -1,25 +1,18 @@
 <!DOCTYPE html>
-<html data-ng-app="channel">
-<head data-ng-controller="channelController">
+<html>
+<head >
     <title>Channel42:{{genre}}</title>
-
-    <link rel="stylesheet" href="bootstrap-3.3.2-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap-3.3.2-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/simple-sidebar.css">
+    <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
     <link rel="stylesheet" href="css/channel.css">
 </head>
-<body data-ng-controller="channelController">
-    <div class="topNav">
-        <div class="sideBarToggle">
-            <button ng-click="toggleSideBar()" type="button" class="btn btn-default" aria-label="Left Align">
-              <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-            </button>
-        </div>
-        <div class="loginMenu">
-
-        </div>
-    </div>
+<body >
     <div id="sideBar" style="{{showSideBar}}">
+      <div class="sideBarToggle">
+              <button ng-click="toggleSideBar()" type="button" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                <span>SideBar</span>
+              </button>
+        </div>
         <ul>
           <li ng-repeat="channel in userData.Channels track by $index">
             {{channel}}
@@ -32,7 +25,7 @@
 
 
     <script src="js/angular.min.js"></script>
-    <script src="js/channel.js"></script>
+    <!-- // <script src="js/channel.js"></script> -->
 </body>
 </html>
 
