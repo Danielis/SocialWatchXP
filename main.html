@@ -1,8 +1,6 @@
     <link rel="stylesheet" href="css/main.css">
 
-    <div class="jumbotron">
-         <img src="data/channel42.png">
-    </div>
+    
     <div id="sideBar" style="{{showSideBar}}">
         <h4> My Channels </h4>
         
@@ -16,12 +14,12 @@
     </div>
 
     <div style="{{channelStyle}}" id="Content">
-      <div class="container">
+      <div class="row">
       <div class="col-sm-4 squarePad" data-ng-repeat="channel in Channels track by $index">
-        <div class="square"><h3>{{channel.title}}</h3>
+        <a href="#/channel"><div  class="square"><h3>{{channel.title}}</h3>
           http://img.youtube.com/vi/{{channel.youtubeID}}/0.jpg
           <img src="http://img.youtube.com/vi/{{channel.youtubeID}}/0.jpg">
-        </div>
+        </div></a>
         
       </div>
     </div>

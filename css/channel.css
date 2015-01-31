@@ -55,7 +55,7 @@ img{
 #chatBar{
 	width:  5%;
 	background-color: #1c1c1c;
-	height: 80%;
+	height: 90%;
 	position:fixed;
 	float: left;
 	color: white;
@@ -78,8 +78,8 @@ img{
 	float: right;
 	color: white;
 	opacity: 0.5;
-	margin-left: 74%;
-	margin-top: 42%;
+	margin-left: 75%;
+	margin-top: 48%;
 	text-align: center;
 	border-radius: 4px;
 	padding-top: 15px;
@@ -102,7 +102,7 @@ img{
 	color: white;
 	opacity: 0.5;
 	margin-left: 80%;
-	margin-top: 42%;
+	margin-top: 48%;
 	text-align: center;
 	border-radius: 4px;
 	padding-top: 15px;
@@ -126,7 +126,7 @@ img{
 	color: white;
 	opacity: 0.0;
 	margin-left: 95%;
-	margin-top: 25%;
+	margin-top: 31%;
 	text-align: center;
 	border-radius: 2px;
 	padding: 5px 5px 5px 5px;
@@ -195,13 +195,20 @@ img{
 .loginMenu{
 
 }
+input{
+	color:black;
+}
 
-/*overwrite bootstrap*/
+/*overwrite bootstrap things*/
 .jumbotron{
 	background-color: #333333;
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
 	text-align: center;
+}
+.modal-content{
+	padding:20px 20px 20px 20px;
+	color: black;
 }
 
 .chatMessage{
