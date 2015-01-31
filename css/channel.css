@@ -1,0 +1,35 @@
+body{
+	/*background-color: #2b2b2b;*/
+}
+#sideBar{
+	height: 100%;
+	position:fixed;
+	width:  20%;
+	background-color: #2b2b2b;
+	float: left;
+	color: white;
+	/*border-right: 1px white solid;*/
+}
+#sideBar ul{
+	list-style-type: none;
+}
+#sideBar li{
+	list-style-type: none;
+	font-size: 20px; ;
+}
+#video{
+	float: right;
+	width:100%;
+}
+.topNav{
+	height: 40px;
+	width: 100%;
+	background-color: #2b2b2b;
+}
+
+.sideBarToggle{
+
+}
+.loginMenu{
+
+}
