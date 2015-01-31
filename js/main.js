@@ -2,7 +2,12 @@
 var app = angular.module('main', []);
 
 // controller for the module above
-app.controller('mainController', function($scope,channelApi){
+app.controller('mainController', function($scope, $rootScope){
+	var ref = new Firebase("https://shining-heat-9627.firebaseio.com/");
+	var sync = $firebase(ref);
+
+
+
 	// Data
 	$scope.showSideBar = "";
 	$scope.sideBarHideText = "display: none;";
@@ -25,9 +30,9 @@ app.controller('mainController', function($scope,channelApi){
 	$scope.toggleSideBar = function(){
 		if($scope.showSideBar == $scope.sideBarHideText){
 			$scope.showSideBar = "";
-			$scope.channelStyle = "width:"
-		} 
-		else{ 
+			$scope.channelStyle = "width:";
+		}
+		else{
 			$scope.showSideBar = $scope.sideBarHideText;
 		}
 	};
@@ -38,5 +43,5 @@ app.factory('channelApi', function($http){
 		all: function(){
 			return $http.get('');
 		}
-	}
+	};
 });
