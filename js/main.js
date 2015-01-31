@@ -14,7 +14,7 @@ app.controller('mainController', function($scope, $firebase, $rootScope){
 	$scope.channelStyle = "";
 
 	$scope.userData = {
-		'Channels':["Comedy","Action", "News","USC>UCLA"],
+		'Channels':["Cats","Superbowl", "LocalNews"],
 		'MyChannels': ["BeingAwesome","UnityIntroduction"]
 	};
 	// Ideas: When we do this these have ratings based on user preferences or views or so, this way things they like

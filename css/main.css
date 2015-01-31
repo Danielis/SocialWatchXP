@@ -3,7 +3,12 @@ body{
 	background-color: #333333;
 	color:white;
 }
-
+a{
+	color:white;
+}
+a:hover{
+	color:white;
+}
 #sideBar{
 	width:  2%;
 	background-color: #333333;
@@ -28,13 +33,13 @@ body{
 }
 
 #sideBar div{
-	padding: 5px 5px 5px 5px; 
+	padding: 5px 5px 5px 5px;
 	list-style-type: none;
 	padding-left: 20px;
 	font-size: 20px;
-	opacity: 1; 
+	opacity: 1;
 	margin-top:5px;
-	margin-bottom:5px; 
+	margin-bottom:5px;
 	border-radius: 2px;
 	background-color: #3399cc;
 }
@@ -42,10 +47,10 @@ body{
 	color: #3399cc;
 }
 #sideBar div:hover{
-	padding: 5px 5px 5px 5px; 
+	padding: 5px 5px 5px 5px;
 	list-style-type: none;
 	font-size: 20px;
-	opacity: 1; 
+	opacity: 1;
 }
 
 
@@ -76,7 +81,7 @@ a:hover{
 }
 
 #content{
-	
+
 }
 
 .color-wrapper{
@@ -96,13 +101,13 @@ a:hover{
 }
 .topNav button{
 	float: right;
-	margin-top: 20px; 
+	margin-top: 20px;
 	margin-right: 5px;
 }
 
 .topNav img{
 	width: 10%;
-	margin-bottom: 20px;	
+	margin-bottom: 20px;
 	margin-left: 30px;
 	margin-top: 20px;
 }
@@ -111,7 +116,7 @@ a:hover{
 	margin: auto auto;
 }
 .sideBarToggle{
-	
+
 }
 .sideBarToggle span{
 	font-weight: bold;
@@ -123,7 +128,7 @@ a:hover{
 	color:black;
 }
 .loginMenu a{
-	
+
 }
 
 /*overwrite bootstrap*/

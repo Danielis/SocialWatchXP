@@ -6,7 +6,7 @@ var app = angular.module('channel', []);
 app.controller('channelController', function($scope, $window, $firebase, chatApi, $interval, youtubeEmbedUtils, $routeParams, $http){
 	if ($routeParams.channelID) {
 		var channelID = $routeParams.channelID;
-		console.log(channelID);
+		// console.log(channelID);
 	}
 
 	// Chat FireBase information
@@ -81,15 +81,15 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 	$scope.showModalText = "";
 
 	$scope.userData = {
-		'Channels':["Comedy","Action", "News","USC>UCLA"],
+		'Channels':["Cats","Superbowl", "LocalNews"],
 		'MyChannels': ["BeingAwesome","UnityIntroduction"],
 		'NextVideos': ["Charlie bit my finger", "UCLA floods", "USC is awesome"]
 	};
 
 	$scope.youtubeVideos = [];
 	$http.get('js/data.json').success(function(data) {
-		console.log(data);
-		console.log('currentChannel',$scope.currentChannel);
+		// console.log(data);
+		// console.log('currentChannel',$scope.currentChannel);
 		data.videos.forEach(function(dataVideo, index, data) {
 			if(dataVideo.channelName == $scope.currentChannel) {
 				$scope.youtubeVideos.push(dataVideo.url);
@@ -116,6 +116,10 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 			showinfo: 0,
 			start: timeElapsed
 		};
+
+		$scope.$on('youtube.player.playing', function($event, player) {
+			console.log(new Date());
+		});
 
 		$scope.$on('youtube.player.ended', function($event, player) {
 			$scope.videoCounter++;

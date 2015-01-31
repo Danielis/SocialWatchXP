@@ -3,20 +3,20 @@
 <head >
     <link rel="stylesheet" href="css/channel.css">
 </head>
-<body >  
+<body >
     <div id="sideBar">
-      
+
           <h1>Other Channels</h1>
           <div class="inner" ng-repeat="channel in userData.Channels track by $index">
-            <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
-            {{channel}}
+            <a href="#/channel/{{channel}}"><span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+            {{channel}}</a>
           </div>
-      
+
     </div>
 
     <div id="rightBar">
       <div class= "color-wrapper">
-      <h1>Up Next:</h1>         
+      <h1>Up Next:</h1>
           <div class="inner" ng-repeat="video in userData.NextVideos track by $index">
             <span class="glyphicon glyphicon-expand" aria-hidden="true"></span>
             {{video}}
@@ -28,8 +28,8 @@
     </div>
 
     <div id="chatBar">
-      <h1>Chat</h1> 
-      <div class="color-wrapper">     
+      <h1>Chat</h1>
+      <div class="color-wrapper">
         <input data-ng-model="inputText" type="text">
         <button ng-click="submitMessage()" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -38,13 +38,13 @@
         <span class="name"> {{message.submitter}}:</span>
         <span class="italic">{{message.text}}</span>
         </div>
-       </div>  
+       </div>
     </div>
 
     <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <p>Enter in a YouTube link</p>       
+            <p>Enter in a YouTube link</p>
             <input data-ng-model="inputVideoURL" type="text">
             <button ng-click="addVideo()" type="button" class="btn btn-default">add video</button>
         </div>
