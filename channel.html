@@ -27,6 +27,7 @@
         <h1>Other Channels</h1>
         
           <div ng-repeat="channel in userData.Channels track by $index">
+            <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
             {{channel}}
           </div>
         
@@ -35,9 +36,12 @@
     <div id="rightBar">
         <p>Up Next:</p>
           <div ng-repeat="video in userData.NextVideos track by $index">
+            <span class="glyphicon glyphicon-expand" aria-hidden="true"></span>
             {{video}}
           </div>    
-        <p>Add A Video:</p><button ng-click="toggleModal()" type="button" class="btn btn-default">+</button>
+       <button ng-click="toggleModal()" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
     </div>
 
     <div id="modal" style="{{hideModal}}">
@@ -46,8 +50,8 @@
         <button ng-click="toggleModal()" type="button" class="btn btn-default">exit</button>
     </div>
 
-    <div id="likeBar" ng-click="clickLike()"><p>Like</p></div>
-    <div id="dislikeBar" ng-click="clickDislike()"><p>Dislike</p></div>
+    <div id="likeBar" ng-click="clickLike()"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></div>
+    <div id="dislikeBar" ng-click="clickDislike()"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></div>
 
     
       <div id="video" style="{{videoHeight}}">
