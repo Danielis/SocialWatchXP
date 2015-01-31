@@ -1,9 +1,9 @@
-// Add data-ng-controller or so forth for html5 rules
+ // Add data-ng-controller or so forth for html5 rules
 
 // ng-app grabs this in index.html
 var app = angular.module('channel', []);
 
-app.controller('channelController', function($scope, $window, $firebase, chatApi, $interval, youtubeEmbedUtils, $routeParams){
+app.controller('channelController', function($scope, $window, $firebase, chatApi, $interval, youtubeEmbedUtils, $routeParams, $http){
 	if ($routeParams.channelID) {
 		var channelID = $routeParams.channelID;
 		console.log(channelID);
@@ -15,9 +15,9 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 	// This pulls the entire list of messages
 	var messageObj = messages.$asObject();
 	$scope.messages = messageObj;
-	
+
 	messageObj.$bindTo($scope, "messages").then(function() {
-   		console.log($scope.messages); // { foo: "bar" }
+   		// console.log($scope.messages); // { foo: "bar" }
    		// $scope.data.foo = "baz";  // will be saved to Firebase
    		//ref.set({foo: "baz"});   // this would update Firebase and $scope.data
 	});
@@ -29,7 +29,7 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 	$scope.videos = videoObj;
 
 	videoObj.$bindTo($scope, "videos").then(function() {
-   		console.log($scope.videos); // { foo: "bar" }
+   		// console.log($scope.videos); // { foo: "bar" }
    		// $scope.data.foo = "baz";  // will be saved to Firebase
    		//ref.set({foo: "baz"});   // this would update Firebase and $scope.data
 	});
@@ -37,15 +37,11 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 	var timeElapsed = 0;
 	for(var i = 0; i < $scope.videos.length; i++) {
 		if ($scope.videos[i].channelName == $scope.currentChannel) {
-			console.log("@@@ " + $scope.videos[i]);
+			// console.log("@@@ " + $scope.videos[i]);
 			$scope.currentVideo = $scope.videos[i];
 			timeElapsed = Date.now() - $scope.currentVideo.playStartTime;
 		}
 	}
-
-
-
-
 
 	//Channel Firebase Info
 	// Video FireBase
@@ -56,7 +52,7 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 	$scope.curChannel= chanObj;
 
 	chanObj.$bindTo($scope, "curChannel").then(function() {
-   		console.log($scope.videos); // { foo: "bar" }
+   		// console.log($scope.videos); // { foo: "bar" }
    		// $scope.data.foo = "baz";  // will be saved to Firebase
    		//ref.set({foo: "baz"});   // this would update Firebase and $scope.data
 	});
@@ -90,35 +86,48 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 		'NextVideos': ["Charlie bit my finger", "UCLA floods", "USC is awesome"]
 	};
 
-	$scope.videoCounter = 0;
-	$scope.youtubeVideos = [
-		'https://www.youtube.com/watch?v=nG2rNBFzkGE',
-		'https://www.youtube.com/watch?v=tPEE9ZwTmy0',
-		'https://www.youtube.com/watch?v=qBcBwOzUlOk',
-		'https://www.youtube.com/watch?v=kfchvCyHmsc',
-		'https://www.youtube.com/watch?v=UPKb9z4l7eM',
-		'https://www.youtube.com/watch?v=HaEbpndntsU'
-	];
-	$scope.youtubeUrl = $scope.youtubeVideos[$scope.videoCounter];
-	$scope.youtubeId = youtubeEmbedUtils.getIdFromURL($scope.youtubeUrl);
+	$scope.youtubeVideos = [];
+	$http.get('js/data.json').success(function(data) {
+		console.log(data);
+		console.log('currentChannel',$scope.currentChannel);
+		data.videos.forEach(function(dataVideo, index, data) {
+			console.log('video',dataVideo);
 
-	$scope.youtubeVars = {
-		// list: 'PLFYnRxXsKaZVOpsTm3YSsqVzqclnq0x8W',
-		controls: 0,
-		autoplay: 1,
-		disablekb: 1,
-		showinfo: 0,
-		start: timeElapsed
-	};
+			$scope.youtubeVideos.push(dataVideo.url);
+		});
 
-	$scope.$on('youtube.player.ended', function($event, player) {
-		$scope.videoCounter++;
-		if($scope.videoCounter < $scope.youtubeVideos.length) {
-			$scope.youtubeUrl = $scope.youtubeVideos[$scope.videoCounter];
-		}
+		$scope.videoCounter = 0;
+		// $scope.youtubeVideos = [
+		// 	'https://www.youtube.com/watch?v=nG2rNBFzkGE',
+		// 	'https://www.youtube.com/watch?v=tPEE9ZwTmy0',
+		// 	'https://www.youtube.com/watch?v=qBcBwOzUlOk',
+		// 	'https://www.youtube.com/watch?v=kfchvCyHmsc',
+		// 	'https://www.youtube.com/watch?v=UPKb9z4l7eM',
+		// 	'https://www.youtube.com/watch?v=HaEbpndntsU'
+		// ];
+		$scope.youtubeUrl = $scope.youtubeVideos[$scope.videoCounter];
+		// $scope.youtubeId = youtubeEmbedUtils.getIdFromURL($scope.youtubeUrl);
 
-		timeElapsed = 0;
+		$scope.youtubeVars = {
+			// list: 'PLFYnRxXsKaZVOpsTm3YSsqVzqclnq0x8W',
+			controls: 0,
+			autoplay: 1,
+			disablekb: 1,
+			showinfo: 0,
+			start: timeElapsed
+		};
+
+		$scope.$on('youtube.player.ended', function($event, player) {
+			$scope.videoCounter++;
+			if($scope.videoCounter < $scope.youtubeVideos.length) {
+				$scope.youtubeUrl = $scope.youtubeVideos[$scope.videoCounter];
+			}
+
+			timeElapsed = 0;
+		});
 	});
+
+
 
 
 
