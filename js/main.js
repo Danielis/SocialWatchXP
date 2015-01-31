@@ -2,7 +2,7 @@
 var app = angular.module('main', []);
 
 // controller for the module above
-app.controller('mainController', function($scope, $rootScope){
+app.controller('mainController', function($scope){
 	var ref = new Firebase("https://shining-heat-9627.firebaseio.com/");
 	var sync = $firebase(ref);
 
