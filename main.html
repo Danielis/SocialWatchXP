@@ -1,7 +1,7 @@
     <link rel="stylesheet" href="css/main.css">
 
     <div class="jumbotron">
-      <h3>Click here to <button ng-click="toggleModal()" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> create</button> a Channel or join an exsisting one!</h3>
+      <h3>Click here to <button ng-click="toggleModal()" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> create</button> a Channel or join an existing one!</h3>
           <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-sm">
           <div class="modal-content">
@@ -22,10 +22,10 @@
         <h4> My Channels </h4>
             <div ng-repeat="channel in userData.MyChannels track by $index">
               <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> {{channel}}
-            </div>    
+            </div>
         <h4> Recommended </h4>
             <div ng-repeat="channel in userData.Channels track by $index">
-              <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> {{channel}}
+              <a href="#/channel/{{channel}}"><span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> {{channel}}</a>
             </div>
       </div>
     </div>
