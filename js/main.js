@@ -1,4 +1,4 @@
-// Add data-ng-controller or so forth for html5 rules
+/ Add data-ng-controller or so forth for html5 rules
 
 // ng-app grabs this in index.html
 var app = angular.module('gradebook', []);
