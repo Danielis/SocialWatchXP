@@ -5,32 +5,31 @@
 </head>
 <body >  
     <div id="sideBar">
-      <div class="color-wrapper">
-        <h1>Other Channels</h1>
-
-          <div ng-repeat="channel in userData.Channels track by $index">
+      
+          <h1>Other Channels</h1>
+          <div class="inner" ng-repeat="channel in userData.Channels track by $index">
             <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
             {{channel}}
           </div>
-      </div>
+      
     </div>
 
     <div id="rightBar">
-      <div class"color-wrapper">
-        <p>Up Next:</p>
-          <div ng-repeat="video in userData.NextVideos track by $index">
+      <div class= "color-wrapper">
+      <h1>Up Next:</h1>         
+          <div class="inner" ng-repeat="video in userData.NextVideos track by $index">
             <span class="glyphicon glyphicon-expand" aria-hidden="true"></span>
             {{video}}
           </div>
-       <button ng-click="toggleModal()" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        </button>
-        </div>
+          <button ng-click="toggleModal()" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">
+            Add <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      </button>
+      </div>
     </div>
 
     <div id="chatBar">
-      <div class="color-wrapper">
-        <h1>Chat</h1>
+      <h1>Chat</h1> 
+      <div class="color-wrapper">     
         <input data-ng-model="inputText" type="text">
         <button ng-click="submitMessage()" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -39,7 +38,7 @@
         <span class="name"> {{message.submitter}}:</span>
         <span class="italic">{{message.text}}</span>
         </div>
-        </div>
+       </div>  
     </div>
 
     <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
