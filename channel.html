@@ -9,58 +9,13 @@
     <link rel="stylesheet" href="css/channel.css">
 </head>
 <body data-ng-controller="channelController">
-    <div class="sidenav">
-      <div class="sidenav-search">
-        <form id="movie-search-form">
-          <input type="text" placeholder="Search movies..." id="movie-search">
-        </form>
-      </div>
-      <div class="sidenav-navigation">
-        <div class="sidenav-main">
-          <nav>
-            <header><h2>Main</h2></header>
-            <ul>
-              <li class="sidenav-option sidenav-discover sidenav-selected">
-                <a href="" alt="Discover Section">
-                  Discover
-                </a>
-              </li>
-              <li class="sidenav-option sidenav-new-releases">
-                <a href="" alt="New Releases Section">
-                  New Releases
-                </a>
-              </li>
-              <li class="sidenav-option sidenav-top-charts">
-                <a href="" alt="New Releases Section">
-                  Top Charts
-                </a>
-              </li>
-              <li class="sidenav-option sidenav-history">
-                <a href="" alt="New Releases Section">
-                  Watch History
-                </a>
-              </li>
-              <li class="sidenav-option sidenav-new-releases">
-                <a href="" alt="New Releases Section">
-                  Favorites
-                </a>
-              </li>
-            </ul>
-
-            <h2>Movie Circles</h2>
-            <ul>
-              <li class="sidenav-option movie-circle">
-                <a href="" alt="Movies to watch on plane ride to Florida.">
-                  Plane Trip
-                </a>
-              </li>
-              <li class="sidenav-option movie-circle">
-                <a href="" alt="Movies that I can't wait to watch.">
-                  Must Sees
-                </a>
-              </li>
-            </ul>
-
+    <div class="topNav">
+        <div class="sideBarToggle">
+            <button ng-click="toggleSideBar()" type="button" class="btn btn-default" aria-label="Left Align">
+              <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="loginMenu">
             <h2>Collaborated Circles</h2>
             <ul>
               <li class="sidenav-option collab-circle">
@@ -78,16 +33,16 @@
         </div>
       </div>
     </div>
-    
-    <div id="sideBar">
+
+    <div id="sideBar" style="{{showSideBar}}">
         <ul>
           <li ng-repeat="channel in userData.Channels track by $index">
             {{channel}}
           </li>
         </ul>
     </div>
-    <div id="video">
-        <iframe id="Video" width="100%" height="100%" src="https://www.youtube.com/embed/XJfGnqKoXYY" frameborder="0" allowfullscreen></iframe>
+    <div id="video" style="{{videoHeight}}">
+        <iframe id="Video" width="{{videoWidth}}" height="{{videoHeight}}" align="right"src="https://www.youtube.com/embed/XJfGnqKoXYY" frameborder="0" allowfullscreen></iframe>
     </div>
 
 
