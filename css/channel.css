@@ -12,29 +12,28 @@ input {
 	color: black;
 }
 #sideBar{
-	width:  5%;
-	background-color: #1c1c1c;
+	width: 1%;
 	height: 40%;
 	position:fixed;
-	/*background-color: #333333;*/
+	background-color: #3399cc;
 	float: left;
 	color: white;
-	opacity: 0.0;
+	opacity: 0.2;
 	border-radius: 4px;
 	padding: 10px 10px 10px 10px;
-	/*border-right: 1px white solid;*/
 	margin-top: 0%;
-	margin-left: 95%;
+	margin-left: 99%;
+	overflow: hidden;
 }
 
 #sideBar:hover{
 	width:  15%;
 	opacity: 0.5;
 	margin-left: 85%;
-
+	background-color: #333333;
 }
 
-#sideBar div{
+#sideBar .inner{
 	padding: 5px 5px 5px 5px; 
 	list-style-type: none;
 	padding-left: 20px;
@@ -48,28 +47,33 @@ input {
 #sideBar h1{
 	color: #3399cc;
 }
-#sideBar div:hover{
-	padding: 5px 5px 5px 5px; 
-	list-style-type: none;
-	font-size: 20px;
-	opacity: 1; 
-}
 
 #chatBar{
-	width:  5%;
-	background-color: #1c1c1c;
+	width: 1%;
+	background-color: #3399cc;
 	height: 90%;
 	position:fixed;
 	float: left;
 	color: white;
-	opacity: 0.0;
+	opacity: 0.2;
 	border-radius: 4px;
 	padding: 10px 10px 10px 10px;
 	margin-top: 0%;
+	overflow: hidden;
+
 }
+.color-wrapper{
+	opacity: .5;
+}
+.color-wrapper:hover{
+	opacity: 1;
+}
+
 #chatBar:hover{
 	width:  15%;
 	opacity: 0.5;
+	visibility: visible;
+	background-color: #333333;
 }
 
 /*like bar*/
@@ -119,39 +123,42 @@ input {
 }
 
 /*right bar*/
-
 #rightBar{
-	height: 35%;
+	height: 40%;
 	position:fixed;
-	width: 5%;
-	background-color: #333333;
+	width: 1%;
+	background-color: #3399cc;
+
 	float: right;
 	color: white;
-	opacity: 0.0;
-	margin-left: 95%;
-	margin-top: 31%;
+	opacity: 0.2;
+	margin-left: 99%;
+	margin-top: 28%;
 	text-align: center;
 	border-radius: 2px;
 	padding: 5px 5px 5px 5px;
+	overflow: hidden;
 }
 
 #rightBar p{
 	margin-top: 10px;
 	font-size: 20px;
 }
-#rightBar div{
+#rightBar .inner{
 	padding: 5px 5px 5px 5px;
 	margin-top:5px;
 	margin-bottom:5px; 
 	opacity: 0.5;
 	border-radius: 2px;
 	background-color: #3399cc;
+	text-align: left;
 }
 
 #rightBar:hover{
 	opacity: 0.75;
 	width:10%;
 	margin-left: 90%;
+	background-color: #333333;
 }
 #rightBar button{
 	margin-top: 20px;
@@ -188,13 +195,6 @@ input {
 	background-color: #333333;
 }
 
-.topNav button{
-	margin-left: 10px;
-	margin-top: 10px;
-}
-.sideBarToggle{
-
-}
 .loginMenu{
 
 }
