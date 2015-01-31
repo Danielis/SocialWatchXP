@@ -3,29 +3,53 @@
 // ng-app grabs this in index.html
 var app = angular.module('channel', []);
 
-app.controller('channelController', function($scope, $window, $firebase, chatApi, $interval, youtubeEmbedUtils){
-
+app.controller('channelController', function($scope, $routeParams, $window, $firebase, chatApi, $interval, youtubeEmbedUtils){
+	
+	// Chat FireBase information
 	var ref = new Firebase("https://shining-heat-6104.firebaseio.com/");
 	var messages = $firebase(ref);
-	// We don't want this here as it pushes this every time controller loads
-	// messages.$push(message={channelName:"Lakers",text: "Welcome!",submitter: "Daniel Silva",time: new Date()});
 	// This pulls the entire list of messages
 	var messageObj = messages.$asObject();
 	$scope.messages = messageObj;
-	// As you can see the push created something with a unqiue identifier so to filter we need channelName and timestamp
-	console.log($scope.messages);
-
+	
 	messageObj.$bindTo($scope, "messages").then(function() {
    		console.log($scope.messages); // { foo: "bar" }
+   		// $scope.data.foo = "baz";  // will be saved to Firebase
+   		//ref.set({foo: "baz"});   // this would update Firebase and $scope.data
+	});
+	// Video FireBase
+	var vid = new Firebase("https://blinding-heat-2195.firebaseio.com/");
+	var videos = $firebase(vid);
+
+	var videoObj = videos.$asObject();
+	$scope.videos = videoObj;
+
+	videoObj.$bindTo($scope, "videos").then(function() {
+   		console.log($scope.videos); // { foo: "bar" }
+   		// $scope.data.foo = "baz";  // will be saved to Firebase
+   		//ref.set({foo: "baz"});   // this would update Firebase and $scope.data
+	});
+
+	//Channel Firebase Info
+	// Video FireBase
+	var chan = new Firebase("https://shining-heat-9627.firebaseio.com/");
+	var chanchan = $firebase(chan);
+
+	var chanObj = chanchan.$asObject();
+	$scope.curChannel= chanObj;
+
+	chanObj.$bindTo($scope, "curChannel").then(function() {
+   		console.log($scope.videos); // { foo: "bar" }
    		// $scope.data.foo = "baz";  // will be saved to Firebase
    		//ref.set({foo: "baz"});   // this would update Firebase and $scope.data
 	});
 	//messages.$remove();
 
 	$scope.inputText = "";
-	$scope.currentChannel = "Lakers";
+	$scope.currentChannel = "Lakers";  // Update with params for current channel name and use for videos and chat to be correct
 	$scope.currentUser = "Daniel Silva";
 
+	$scope.inputVideoURL = "";
 
 	$scope.channelID= [];
 	$scope.genre = "Comedy";
@@ -105,12 +129,12 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 	};
 
 	$scope.addVideo = function(){
-		//do something to add a video
-
+		videos.$push({channelName: $scope.currentChannel,timeStamp: new Date(),url: $scope.inputVideoURL,youtubeID: 0,playStartTime: -1, videoLength: 0, submitter: $scope.currentUser, likes: 0, dislikes: 0});
+		console.log($scope.inputText);
 	};
 
 	$scope.submitMessage = function(){
-		messages.$push(message={channelName: $scope.currentChannel,text: $scope.inputText,submitter: $scope.currentUser,time: new Date()});
+		messages.$push({channelName: $scope.currentChannel,text: $scope.inputText,submitter: $scope.currentUser,timeStamp: new Date()});
 		console.log($scope.inputText);
 	};
 });
