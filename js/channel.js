@@ -3,29 +3,61 @@
 // ng-app grabs this in index.html
 var app = angular.module('channel', []);
 
-app.controller('channelController', function($scope, $window, chatApi){
+app.controller('channelController', function($scope, $window, chatApi, $interval){
 	$scope.channelID= [];
 	$scope.genre = "Comedy";
 	$scope.showSideBar = "";
 	$scope.sideBarHideText = "display: none;";
-	$scope.videoHeight = "100%";
-	$scope.videoWidth = "80%";
+	$scope.videoHeight = $window.innerHeight;
+	$scope.videoWidth = "100%";
 
+	//modal
+	$scope.hideModal = "display: none;";
+	$scope.hideModalText = "display: none;";
+	$scope.showModalText = "";
+	
 	$scope.userData = {
 		'Channels':["Comedy","Action", "News","USC>UCLA"],
-		'MyChannels': ["BeingAwesome","UnityIntroduction"]
+		'MyChannels': ["BeingAwesome","UnityIntroduction"],
+		'NextVideos': ["Charlie bit my finger", "UCLA floods", "USC is awesome"]
 	};
 
 	$scope.toggleSideBar = function(){
 		if($scope.showSideBar == $scope.sideBarHideText){
 			$scope.showSideBar = "";
-			$scope.videoWidth="100%"; 
+			//$scope.videoWidth="80%"; 
 		} 
 		else{ 
 			$scope.showSideBar = $scope.sideBarHideText;
-			$scope.videoWidth="80%";
+			//$scope.videoWidth="100%";
 		}
 		console.log($window.innerHeight);
+	};
+
+	$scope.clickLike = function(){
+		//do something when like is pressed
+		console.log("clicked like");
+
+	};
+	$scope.clickDislike = function(){
+		//do something when like is pressed
+		console.log("clicked dislike");
+
+	};
+
+	$scope.toggleModal = function(){
+		//bring up modal
+		if($scope.hideModal == $scope.showModalText){
+			$scope.hideModal = $scope.hideModalText;
+		} 
+		else{ 
+			$scope.hideModal = $scope.showModalText;
+		}
+	};
+
+	$scope.addVideo = function(){
+		//do something to add a video
+
 	};
 });
 
