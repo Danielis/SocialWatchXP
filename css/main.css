@@ -48,17 +48,19 @@ body{
 	opacity: 1; 
 }
 
+
 .squarePad{
 	padding-top: 15px ;
 	padding-bottom: 15px;
 	padding-left: 30px;
 	padding-right: 30px;
+
 }
-a .square{
+.square{
 	border:2px solid #3399cc;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	border-radius: 1px;
+	border-radius: 3px;
 	padding: 10px 10px 10px 10px;
 	text-align: center;
 	background-color: #3399cc;
