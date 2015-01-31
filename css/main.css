@@ -1,32 +1,68 @@
 body{
 	margin: auto auto;
-	background-color: #2b2b2b;
+	background-color: #333333;
 	color:white;
 }
 
+img{
+	width: 20%;
+	margin-bottom: 20px;
+}
+
 #sideBar{
-	height: 100%;
-	position: fixed;
-	width:  15%;
-	background-color: #1c1c1c;
+	width:  5%;
+	background-color: #333333;
+	height: 45%;
+	position:fixed;
+	/*background-color: #333333;*/
 	float: left;
 	color: white;
+	opacity: 0.0;
+	border-radius: 4px;
+	padding: 10px 10px 10px 10px;
 	/*border-right: 1px white solid;*/
+	margin-top: 10%;
+	margin-left: 95%;
 }
-#sideBar ul{
+
+#sideBar:hover{
+	width:  20%;
+	opacity: 0.5;
+	margin-left: 80%;
+}
+
+#sideBar div{
+	padding: 5px 5px 5px 5px; 
 	list-style-type: none;
-	padding-left: 0;
+	padding-left: 20px;
+	font-size: 20px;
+	opacity: 1; 
+	margin-top:5px;
+	margin-bottom:5px; 
+	border-radius: 2px;
+	background-color: #3399cc;
 }
-#sideBar li{
-	width: 100%;
+#sideBar h1{
+	color: #3399cc;
+}
+#sideBar div:hover{
+	padding: 5px 5px 5px 5px; 
 	list-style-type: none;
 	font-size: 20px;
-	padding-left: 20px;
+	opacity: 1; 
 }
-#sideBar li:hover{
-	background-color: #3399cc;
-	padding-left: 30px;
+.squarePad{
+	padding: 10px 10px 10px 10px;
 }
+.square{
+	border:2px solid #3399cc;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 6px;
+	padding: 10px 10px 10px 10px;
+	text-align: center;
+}
+
 #content{
 	
 }
@@ -34,7 +70,7 @@ body{
 .topNav{
 	height: 40px;
 	width: 100%;
-	background-color: #3399cc;
+	background-color: #333333;
 	color:black;
 }
 .topNavInner{
@@ -55,15 +91,15 @@ body{
 .loginMenu a{
 	
 }
-.channelBox{
-	float:left;
-	width: 250px;
-	height:300px;
+
+/*overwrite bootstrap*/
+.jumbotron{
+	background-color: #333333;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	text-align: center;
 }
-.channelBox img{
-	width:100%;
-}
-.channelWrap{
-	margin: auto auto;
-	width: 100%;
+
+.btnSpace{
+	margin: 5px 5px 5px 5px;
 }

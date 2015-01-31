@@ -1,28 +1,27 @@
+    <link rel="stylesheet" href="css/main.css">
+
+    <div class="jumbotron">
+         <img src="data/channel42.png">
+    </div>
     <div id="sideBar" style="{{showSideBar}}">
-        <div class="sideBarToggle">
-              <button ng-click="toggleSideBar()" type="button" class="btn btn-default" aria-label="Left Align">
-                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-                <span>SideBar</span>
-              </button>
-        </div>
         <h4> My Channels </h4>
-        <ul>
-            <li ng-repeat="channel in userData.MyChannels track by $index">
-              {{channel}}
-            </li>
-        </ul>
+        
+            <div ng-repeat="channel in userData.MyChannels track by $index">
+              <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> {{channel}}
+            </div>
+        
         <h4> Recommended </h4>
-        <ul>
-            <li ng-repeat="channel in userData.Channels track by $index">
-              {{channel}}
-            </li>
-        </ul>
+        
+            <div ng-repeat="channel in userData.Channels track by $index">
+              <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> {{channel}}
+            </div>
+        
     </div>
 
     <div style="{{channelStyle}}" id="Content">
-      <div class="channelWrap">
-      <div class="channelBox" data-ng-repeat="channel in Channels track by $index">
-        <h3>{{channel.title}}</h3>
+      <div class="container">
+      <div class="col-sm-4 squarePad" data-ng-repeat="channel in Channels track by $index">
+        <div class="square"><h3>{{channel.title}}</h3></div>
         <img src="images/{{channel.image}}">
       </div>
     </div>

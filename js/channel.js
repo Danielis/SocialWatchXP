@@ -35,11 +35,9 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 	$scope.toggleSideBar = function(){
 		if($scope.showSideBar == $scope.sideBarHideText){
 			$scope.showSideBar = "";
-			//$scope.videoWidth="80%"; 
 		} 
 		else{ 
 			$scope.showSideBar = $scope.sideBarHideText;
-			//$scope.videoWidth="100%";
 		}
 		console.log($window.innerHeight);
 	};

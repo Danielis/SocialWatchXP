@@ -5,15 +5,6 @@
 </head>
 <body >
 
-    <div class="topNav">
-        <div class="sideBarToggle">
-            <button ng-click="toggleSideBar()" type="button" class="btn btn-default" aria-label="Left Align">
-              <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-            </button>
-        </div>
-      </div>
-    </div>
-
     <div class="jumbotron">
          <img src="data/channel42.png">
     </div>
@@ -34,15 +25,25 @@
             <span class="glyphicon glyphicon-expand" aria-hidden="true"></span>
             {{video}}
           </div>    
-       <button ng-click="toggleModal()" type="button" class="btn btn-default">
+       <button ng-click="toggleModal()" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
     </div>
 
+    <!--
     <div id="modal" style="{{hideModal}}">
         <p>test: </p><input type="text">
         <button ng-click="addVideo()" type="button" class="btn btn-default">add video</button>
         <button ng-click="toggleModal()" type="button" class="btn btn-default">exit</button>
+    </div>-->
+
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <p>test: </p><input type="text">
+            <button ng-click="addVideo()" type="button" class="btn btn-default">add video</button>
+        </div>
+      </div>
     </div>
 
     <div id="likeBar" ng-click="clickLike()"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></div>

@@ -21,15 +21,10 @@ app.controller('mainController', function($scope, $rootScope){
 	// show up first before others
 	// MyChannels are those they favorited, but these are based on how much they few them
 	$scope.Channels=[
-		{title:"Trending"},
+		{title:"Lakers"},
 		{title:"News"},
-		{title:"Music"},
-		{title:"Comedy"},
 		{title:"Anime"},
-		{title:"Sports"},
-		{title:"Movies"},
-		{title:"Gaming"},
-		{title:"Education"}
+		{title:"Comedy"}
 	];
 	console.log($scope.Channels);
 	$scope.toggleSideBar = function(){
