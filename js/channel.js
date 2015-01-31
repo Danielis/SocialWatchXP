@@ -3,7 +3,7 @@
 // ng-app grabs this in index.html
 var app = angular.module('channel', []);
 
-app.controller('channelController', function($scope, $window, $firebase, chatApi, $interval, youtubeEmbedUtils, $routeParams, $http){
+app.controller('channelController', function($rootScope, $scope, $window, $firebase, chatApi, $interval, youtubeEmbedUtils, $routeParams, $http){
 	if ($routeParams.channelID) {
 		var channelID = $routeParams.channelID;
 		// console.log(channelID);
@@ -35,13 +35,13 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 	});
 
 	var timeElapsed = 0;
-	for(var i = 0; i < $scope.videos.length; i++) {
-		if ($scope.videos[i].channelName == $scope.currentChannel) {
-			// console.log("@@@ " + $scope.videos[i]);
-			$scope.currentVideo = $scope.videos[i];
-			timeElapsed = Date.now() - $scope.currentVideo.playStartTime;
-		}
-	}
+	// for(var i = 0; i < $scope.videos.length; i++) {
+	// 	if($scope.videos[i].channelName == $scope.currentChannel) {
+	// 		// console.log("@@@ " + $scope.videos[i]);
+	// 		$scope.currentVideo = $scope.videos[i];
+	// 		timeElapsed = Date.now() - $scope.currentVideo.playStartTime;
+	// 	}
+	// }
 
 	//Channel Firebase Info
 	// Video FireBase
@@ -50,6 +50,7 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 
 	var chanObj = chanchan.$asObject();
 	$scope.curChannel= chanObj;
+	console.log('curChannel',$scope.curChannel);
 
 	chanObj.$bindTo($scope, "curChannel").then(function() {
    		// console.log($scope.videos); // { foo: "bar" }
@@ -64,6 +65,21 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 	} else {
 		$scope.currentChannel = "Lakers";  // Update with params for current channel name and use for videos and chat to be correct
 	}
+
+	chan.on('value', function(snapshot) {
+		snapshot.forEach(function(child) {
+			console.log('child',child.val());
+			console.log('currentChannel',$scope.currentChannel);
+			if(child.val().name == $scope.currentChannel) {
+				console.log('matched names');
+				$rootScope.curChannel = child.val();
+				$rootScope.channelId = child.val().id;
+				console.log('curChannel after update',$scope.curChannel);
+				console.log('channelId',$rootScope.channelId);
+			}
+		});
+	});
+
 	$scope.currentUser = "Daniel Silva";
 
 	$scope.inputVideoURL = "";
@@ -87,29 +103,19 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 	};
 
 	$scope.youtubeVideos = [];
+	// $scope.dataVideos = data.videos;
 	$http.get('js/data.json').success(function(data) {
-		// console.log(data);
-		// console.log('currentChannel',$scope.currentChannel);
 		data.videos.forEach(function(dataVideo, index, data) {
 			if(dataVideo.channelName == $scope.currentChannel) {
-				$scope.youtubeVideos.push(dataVideo.url);
+				// $scope.youtubeVideos.push(dataVideo.url);
+				$scope.youtubeVideos.push(dataVideo);
 			}
 		});
 
 		$scope.videoCounter = 0;
-		// $scope.youtubeVideos = [
-		// 	'https://www.youtube.com/watch?v=nG2rNBFzkGE',
-		// 	'https://www.youtube.com/watch?v=tPEE9ZwTmy0',
-		// 	'https://www.youtube.com/watch?v=qBcBwOzUlOk',
-		// 	'https://www.youtube.com/watch?v=kfchvCyHmsc',
-		// 	'https://www.youtube.com/watch?v=UPKb9z4l7eM',
-		// 	'https://www.youtube.com/watch?v=HaEbpndntsU'
-		// ];
-		$scope.youtubeUrl = $scope.youtubeVideos[$scope.videoCounter];
-		// $scope.youtubeId = youtubeEmbedUtils.getIdFromURL($scope.youtubeUrl);
+		$scope.youtubeUrl = $scope.youtubeVideos[$scope.videoCounter].url;
 
 		$scope.youtubeVars = {
-			// list: 'PLFYnRxXsKaZVOpsTm3YSsqVzqclnq0x8W',
 			controls: 0,
 			autoplay: 1,
 			disablekb: 1,
@@ -118,7 +124,28 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 		};
 
 		$scope.$on('youtube.player.playing', function($event, player) {
-			console.log(new Date());
+			console.log(Date.now());
+			// console.log($scope.youtubeVideos[$scope.videoCounter]);
+			if($scope.youtubeVideos[$scope.videoCounter].playStartTime == "-1") {
+				console.log('not started');
+				var now = Date.now();
+				$scope.youtubeVideos[$scope.videoCounter].playStartTime = now;
+
+				console.log('video playing, curChannel',$rootScope.curChannel);
+				console.log('video playing, channelId', $rootScope.channelId);
+
+				var channel = new Firebase("https://shining-heat-9627.firebaseio.com/"+$rootScope.channelId);
+				// var channelSync = $firebase(channel);
+				// var channelObject = channelSync.$asObject();
+				// console.log('firebase object to update',);
+				// $scope.curChannel.video_start_time = now;
+				channel.update({
+					video_start_time: now
+				});
+				// $scope.curChannel.$save();
+			} else {
+
+			}
 		});
 
 		$scope.$on('youtube.player.ended', function($event, player) {
