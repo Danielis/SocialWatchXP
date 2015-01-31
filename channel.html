@@ -11,7 +11,7 @@
 <body data-ng-controller="channelController">
     <div class="topNav">
         <div class="sideBarToggle">
-            <button type="button" class="btn btn-default" aria-label="Left Align">
+            <button ng-click="toggleSideBar()" type="button" class="btn btn-default" aria-label="Left Align">
               <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
             </button>
         </div>
@@ -19,15 +19,15 @@
 
         </div>
     </div>
-    <div id="sideBar" ng-hide="{{!showSideBar}}">
+    <div id="sideBar" style="{{showSideBar}}">
         <ul>
           <li ng-repeat="channel in userData.Channels track by $index">
             {{channel}}
           </li>
         </ul>
     </div>
-    <div id="video">
-        <iframe id="Video" width="100%" height="100%" src="https://www.youtube.com/embed/XJfGnqKoXYY" frameborder="0" allowfullscreen></iframe>
+    <div id="video" style="{{videoHeight}}">
+        <iframe id="Video" width="{{videoWidth}}" height="{{videoHeight}}" align="right"src="https://www.youtube.com/embed/XJfGnqKoXYY" frameborder="0" allowfullscreen></iframe>
     </div>
 
 

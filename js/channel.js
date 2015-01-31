@@ -3,18 +3,30 @@
 // ng-app grabs this in index.html
 var app = angular.module('channel', []);
 
-app.controller('channelController', function($scope, chatApi){
+app.controller('channelController', function($scope, $window, chatApi){
 	$scope.channelID= [];
 	$scope.genre = "Comedy";
-	$scope.showSideBar = 1;
+	$scope.showSideBar = "";
+	$scope.sideBarHideText = "display: none;";
+	$scope.videoHeight = "100%";
+	$scope.videoWidth = "80%";
 
-	$scope.userData = 
-	{
+	$scope.userData = {
 		'Channels':["Comedy","Action", "News","USC>UCLA"],
 		'MyChannels': ["BeingAwesome","UnityIntroduction"]
-	}
+	};
 
-	console.log($scope.userData);
+	$scope.toggleSideBar = function(){
+		if($scope.showSideBar == $scope.sideBarHideText){
+			$scope.showSideBar = "";
+			$scope.videoWidth="100%"; 
+		} 
+		else{ 
+			$scope.showSideBar = $scope.sideBarHideText;
+			$scope.videoWidth="80%";
+		}
+		console.log($window.innerHeight);
+	};
 });
 
 app.factory('chatApi', function($http){
