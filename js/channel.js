@@ -73,6 +73,28 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 	});
 
 
+
+	var channelRef = new Firebase("https://shining-heat-9627.firebaseio.com/");
+	var channels = $firebase(channelRef);
+	// We don't want this here as it pushes this every time controller loads
+	// messages.$push(message={channelName:"Lakers",text: "Welcome!",submitter: "Daniel Silva",time: new Date()});
+	// This pulls the entire list of messages
+	var channelObj = channels.$asObject();
+	$scope.channels = channelObj;
+	// As you can see the push created something with a unqiue identifier so to filter we need channelName and timestamp
+	console.log($scope.channels);
+
+	channelObj.$bindTo($scope, "channels").then(function() {
+   		console.log($scope.channels); // { foo: "bar" }
+   		// $scope.data.foo = "baz";  // will be saved to Firebase
+   		//channelRef.set({foo: "baz"});   // this would update Firebase and $scope.data
+	});
+
+	$scope.createChannel = function (channel) {
+		channels.$push(channel={name: channel.name, description: channel.description, date_created: Date.now() });
+	};
+
+
 	$scope.toggleSideBar = function(){
 		if($scope.showSideBar == $scope.sideBarHideText){
 			$scope.showSideBar = "";

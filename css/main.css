@@ -109,3 +109,16 @@ img{
 .btnSpace{
 	margin: 5px 5px 5px 5px;
 }
+
+input {
+	color: #000;
+}
+
+.modal-content {
+	color: #000;
+	padding: 50px;
+}
+
+.modal-content input {
+	margin-bottom: 10px;
+}
