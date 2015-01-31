@@ -51,6 +51,7 @@ img{
 	font-size: 20px;
 	opacity: 1; 
 }
+
 .squarePad{
 	padding: 10px 10px 10px 10px;
 }
@@ -61,6 +62,11 @@ img{
 	border-radius: 6px;
 	padding: 10px 10px 10px 10px;
 	text-align: center;
+	background-color: #3399cc;
+}
+
+.square:hover{
+	opacity: 0.5;
 }
 
 #content{
