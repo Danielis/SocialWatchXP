@@ -9,7 +9,7 @@
          <img src="data/channel42.png">
     </div>
 
-    <div id="sideBar" style="{{showSideBar}}">
+    <div id="sideBar">
         <h1>Other Channels</h1>
         
           <div ng-repeat="channel in userData.Channels track by $index">
@@ -26,6 +26,14 @@
             {{video}}
           </div>    
        <button ng-click="toggleModal()" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+    </div>
+
+    <div id="chatBar">
+        <h1>Chat</h1>
+        <input type="text">
+        <button ng-click="submitMessage()" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
     </div>
@@ -53,10 +61,11 @@
       <div id="video" style="{{videoHeight}}">
           <iframe id="Video" width="{{videoWidth}}" height="{{videoHeight}}" align="right"src="https://www.youtube.com/embed/XJfGnqKoXYY" frameborder="0" allowfullscreen></iframe>
       </div>
-    
+
     <!-- // <script src="js/channel.js"></script> -->
 </body>
 </html>
+
 
 <!-- 
 <div id="player"></div>

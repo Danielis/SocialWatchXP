@@ -1,8 +1,9 @@
 // ng-app grabs this in index.html
-var app = angular.module('main', []);
+var app = angular.module('main', ['firebase']);
 
 // controller for the module above
-app.controller('mainController', function($scope){
+
+app.controller('mainController', function($scope, $firebase){
 	var ref = new Firebase("https://shining-heat-9627.firebaseio.com/");
 	var sync = $firebase(ref);
 

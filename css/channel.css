@@ -52,6 +52,23 @@ img{
 	opacity: 1; 
 }
 
+#chatBar{
+	width:  5%;
+	background-color: #1c1c1c;
+	height: 80%;
+	position:fixed;
+	float: left;
+	color: white;
+	opacity: 0.0;
+	border-radius: 4px;
+	padding: 10px 10px 10px 10px;
+	margin-top: 0%;
+}
+#chatBar:hover{
+	width:  15%;
+	opacity: 0.5;
+}
+
 /*like bar*/
 #likeBar{
 	height: 50px;

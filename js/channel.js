@@ -74,6 +74,10 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 		//do something to add a video
 
 	};
+
+	$scope.submitMessage = function(){
+		
+	};
 });
 
 app.factory('chatApi', function($http){
