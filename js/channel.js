@@ -64,9 +64,7 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 
 	$scope.inputText = "";
 	if ($routeParams.channelID) {
-		var channelRef = new Firebase("https://shining-heat-9627.firebaseio.com/" + $routeParams.channelID).once('value', function(snap) {
-			$scope.currentChannel = snap.val().name;
-		});
+		$scope.currentChannel = decodeURIComponent($routeParams.channelID);
 	} else {
 		$scope.currentChannel = "Lakers";  // Update with params for current channel name and use for videos and chat to be correct
 	}

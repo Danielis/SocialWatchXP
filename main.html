@@ -1,6 +1,5 @@
     <link rel="stylesheet" href="css/main.css">
 
-<<<<<<< HEAD
     <div class="jumbotron">
       <button ng-click="toggleModal()" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Channel
@@ -17,11 +16,7 @@
         </div>
       </div>
     </div>
-         <img src="data/channel42.png">
     </div>
-=======
-    
->>>>>>> fcbf793874e9ed8fc6410631ce2b1246b699b1bd
     <div id="sideBar" style="{{showSideBar}}">
       <div class="color-wrapper">
         <h4> My Channels </h4>
@@ -38,17 +33,10 @@
 
     <div style="{{channelStyle}}" id="Content">
       <div class="row">
-      <div class="col-sm-4 squarePad" data-ng-repeat="channel in Channels track by $index">
-        <a href="#/channel"><div  class="square"><h3>{{channel.title}}</h3>
-          http://img.youtube.com/vi/{{channel.youtubeID}}/0.jpg
-<<<<<<< HEAD
-          <a href="#channel/-Jh07cyuWjlOLWPU52_-">TEST</a>
+        <div class="col-sm-4 squarePad" data-ng-repeat="channel in Channels track by $index">
+          <a href="#/channel/{{channel.name}}"><div  class="square"><h3>{{channel.display_name}}</h3>
         </div>
-=======
-          <img src="http://img.youtube.com/vi/{{channel.youtubeID}}/0.jpg">
-        </div></a>
->>>>>>> fcbf793874e9ed8fc6410631ce2b1246b699b1bd
-        
+        </div>
       </div>
     </div>
     </div>
