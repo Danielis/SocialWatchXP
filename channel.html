@@ -1,38 +1,63 @@
 <!DOCTYPE html>
-<html data-ng-app="channel">
-<head data-ng-controller="channelController">
+<html>
+<head >
     <title>Channel42:{{genre}}</title>
-
-    <link rel="stylesheet" href="bootstrap-3.3.2-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap-3.3.2-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/simple-sidebar.css">
+    <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
     <link rel="stylesheet" href="css/channel.css">
 </head>
-<body data-ng-controller="channelController">
+<body >
+
     <div class="topNav">
         <div class="sideBarToggle">
             <button ng-click="toggleSideBar()" type="button" class="btn btn-default" aria-label="Left Align">
               <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
             </button>
         </div>
-        <div class="loginMenu">
-
-        </div>
+      </div>
     </div>
+
+    <div class="jumbotron">
+         <img src="data/channel42.png">
+    </div>
+
     <div id="sideBar" style="{{showSideBar}}">
-        <ul>
-          <li ng-repeat="channel in userData.Channels track by $index">
+        <h1>Other Channels</h1>
+        
+          <div ng-repeat="channel in userData.Channels track by $index">
+            <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
             {{channel}}
-          </li>
-        </ul>
-    </div>
-    <div id="video" style="{{videoHeight}}">
-        <iframe id="Video" width="{{videoWidth}}" height="{{videoHeight}}" align="right"src="https://www.youtube.com/embed/XJfGnqKoXYY" frameborder="0" allowfullscreen></iframe>
+          </div>
+        
     </div>
 
+    <div id="rightBar">
+        <p>Up Next:</p>
+          <div ng-repeat="video in userData.NextVideos track by $index">
+            <span class="glyphicon glyphicon-expand" aria-hidden="true"></span>
+            {{video}}
+          </div>    
+       <button ng-click="toggleModal()" type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+    </div>
+
+    <div id="modal" style="{{hideModal}}">
+        <p>test: </p><input type="text">
+        <button ng-click="addVideo()" type="button" class="btn btn-default">add video</button>
+        <button ng-click="toggleModal()" type="button" class="btn btn-default">exit</button>
+    </div>
+
+    <div id="likeBar" ng-click="clickLike()"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></div>
+    <div id="dislikeBar" ng-click="clickDislike()"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></div>
+
+    
+      <div id="video" style="{{videoHeight}}">
+          <iframe id="Video" width="{{videoWidth}}" height="{{videoHeight}}" align="right"src="https://www.youtube.com/embed/XJfGnqKoXYY" frameborder="0" allowfullscreen></iframe>
+      </div>
+    
 
     <script src="js/angular.min.js"></script>
-    <script src="js/channel.js"></script>
+    <!-- // <script src="js/channel.js"></script> -->
 </body>
 </html>
 

@@ -1,74 +1,47 @@
-/ Add data-ng-controller or so forth for html5 rules
-
 // ng-app grabs this in index.html
-var app = angular.module('gradebook', []);
+var app = angular.module('main', []);
 
 // controller for the module above
-app.controller('GradebookController', function($scope, gradesApi, gradeStats){
+app.controller('mainController', function($scope,channelApi){
 	// Data
-	$scope.students = [];
+	$scope.showSideBar = "";
+	$scope.sideBarHideText = "display: none;";
+	$scope.channelStyle = "";
 
-	// response contains data, status, headers, config
-	gradesApi.all().then(function(response){
-		$scope.students = response.data;
-
-		$scope.gradeAverage= gradeStats.getAverage($scope.students);
-		$scope.gradeHighest = gradeStats.getHighest($scope.students);
-		$scope.gradeLowest = gradeStats.getLowest($scope.students);
-	});
-
-	$scope.$watch('students', function(){
-		$scope.gradeAverage = gradeStats.getAverage($scope.students);
-	}, true);
-
-	$scope.addStudent = function(){
-		$scope.students.push($scope.gradeForm);
-
-		$scope.gradeForm=  null;
+	$scope.userData = {
+		'Channels':["Comedy","Action", "News","USC>UCLA"],
+		'MyChannels': ["BeingAwesome","UnityIntroduction"]
+	};
+	// Ideas: When we do this these have ratings based on user preferences or views or so, this way things they like
+	// show up first before others
+	// MyChannels are those they favorited, but these are based on how much they few them
+	$scope.Channels=[
+		{title:"Trending"},
+		{title:"News"},
+		{title:"Music"},
+		{title:"Comedy"},
+		{title:"Anime"},
+		{title:"Sports"},
+		{title:"Movies"},
+		{title:"Gaming"},
+		{title:"Education"}
+	];
+	console.log($scope.Channels);
+	$scope.toggleSideBar = function(){
+		if($scope.showSideBar == $scope.sideBarHideText){
+			$scope.showSideBar = "";
+			$scope.channelStyle = "width:"
+		} 
+		else{ 
+			$scope.showSideBar = $scope.sideBarHideText;
+		}
 	};
 });
 
-// create a custom service called in controller
-app.factory('gradesApi', function($http){
+app.factory('channelApi', function($http){
 	return {
 		all: function(){
-			return $http.get('grades.json');
+			return $http.get('');
 		}
-	}
-});
-
-app.factory('gradeStats', function(){
-	function getAverage(students){
-		var sum = 0;
-		students.forEach(function(student){
-			sum += student.grade;
-		});
-		return sum/students.length;
-	}
-
-	function getHighest(students){
-		var highest = students[0];
-		students.forEach(function(student){
-			if(highest.grade < student.grade){
-				highest = student;
-			}
-		});
-		return highest.grade;
-	}
-
-	function getLowest(students){
-		var smallest = students[0];
-		students.forEach(function(student){
-			if(smallest.grade > student.grade){
-				smallest = student;
-			}
-		});
-		return smallest.grade;
-	}
-
-	return  {
-		getAverage: getAverage,
-		getHighest: getHighest,
-		getLowest: getLowest
 	}
 });

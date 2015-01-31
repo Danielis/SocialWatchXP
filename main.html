@@ -1,14 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Channel42</title>
-</head>
-<body>
-	<p> Hello World! </p>
-	<iframe id="Video"width="560" height="315" src="https://www.youtube.com/embed/XJfGnqKoXYY" frameborder="0" allowfullscreen></iframe>
+    <div id="sideBar" style="{{showSideBar}}">
+        <div class="sideBarToggle">
+              <button ng-click="toggleSideBar()" type="button" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                <span>SideBar</span>
+              </button>
+        </div>
+        <h4> My Channels </h4>
+        <ul>
+            <li ng-repeat="channel in userData.MyChannels track by $index">
+              {{channel}}
+            </li>
+        </ul>
+        <h4> Recommended </h4>
+        <ul>
+            <li ng-repeat="channel in userData.Channels track by $index">
+              {{channel}}
+            </li>
+        </ul>
+    </div>
 
-<script src="js/angular.min.js"></script>
-<script src="js/main.js"></script>
-
-</body>
-</html>
+    <div style="{{channelStyle}}" id="Content">
+      <div class="channelWrap">
+      <div class="channelBox" data-ng-repeat="channel in Channels track by $index">
+        <h3>{{channel.title}}</h3>
+        <img src="images/{{channel.image}}">
+      </div>
+    </div>
+    </div>
