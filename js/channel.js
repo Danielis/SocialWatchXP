@@ -25,18 +25,35 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 	$scope.hideModal = "display: none;";
 	$scope.hideModalText = "display: none;";
 	$scope.showModalText = "";
-	
+
 	$scope.userData = {
 		'Channels':["Comedy","Action", "News","USC>UCLA"],
 		'MyChannels': ["BeingAwesome","UnityIntroduction"],
 		'NextVideos': ["Charlie bit my finger", "UCLA floods", "USC is awesome"]
 	};
 
+	// $scope.youtubeUrl = 'https://www.youtube.com/watch?v=HaEbpndntsU&t=0m15s';
+	// $scope.videoCounter = 0;
+	// $scope.youtubeVideos = [
+	// 	'https://www.youtube.com/watch?v=HaEbpndntsU',
+	// 	'https://www.youtube.com/watch?v=nG2rNBFzkGE',
+	// 	'https://www.youtube.com/watch?v=qBcBwOzUlOk'
+	// ];
+
+	$scope.youtubeVars = {
+		list: 'PLFYnRxXsKaZVOpsTm3YSsqVzqclnq0x8W',
+		controls: 0,
+		autoplay: 1,
+		disablekb: 1,
+		showinfo: 0
+	};
+
+
 	$scope.toggleSideBar = function(){
 		if($scope.showSideBar == $scope.sideBarHideText){
 			$scope.showSideBar = "";
-		} 
-		else{ 
+		}
+		else{
 			$scope.showSideBar = $scope.sideBarHideText;
 		}
 		console.log($window.innerHeight);
@@ -57,8 +74,8 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 		//bring up modal
 		if($scope.hideModal == $scope.showModalText){
 			$scope.hideModal = $scope.hideModalText;
-		} 
-		else{ 
+		}
+		else{
 			$scope.hideModal = $scope.showModalText;
 		}
 	};
@@ -74,7 +91,7 @@ app.factory('chatApi', function($http){
 		all: function(){
 			return $http.get('');
 		}
-	}
+	};
 });
 
 // // controller for the module above

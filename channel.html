@@ -11,12 +11,12 @@
 
     <div id="sideBar" style="{{showSideBar}}">
         <h1>Other Channels</h1>
-        
+
           <div ng-repeat="channel in userData.Channels track by $index">
             <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
             {{channel}}
           </div>
-        
+
     </div>
 
     <div id="rightBar">
@@ -24,7 +24,7 @@
           <div ng-repeat="video in userData.NextVideos track by $index">
             <span class="glyphicon glyphicon-expand" aria-hidden="true"></span>
             {{video}}
-          </div>    
+          </div>
        <button ng-click="toggleModal()" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
@@ -49,18 +49,14 @@
     <div id="likeBar" ng-click="clickLike()"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></div>
     <div id="dislikeBar" ng-click="clickDislike()"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></div>
 
-    
-      <div id="video" style="{{videoHeight}}">
-          <iframe id="Video" width="{{videoWidth}}" height="{{videoHeight}}" align="right"src="https://www.youtube.com/embed/XJfGnqKoXYY" frameborder="0" allowfullscreen></iframe>
-      </div>
-    
 
-    <script src="js/angular.min.js"></script>
-    <!-- // <script src="js/channel.js"></script> -->
+    <div id="video" style="pointer-events:none;">
+        <youtube-player player-vars="youtubeVars" player-height="videoHeight" player-width="videoWidth"></youtube-player>
+    </div>
 </body>
 </html>
 
-<!-- 
+<!--
 <div id="player"></div>
 
     <script>
