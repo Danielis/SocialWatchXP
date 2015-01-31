@@ -3,7 +3,7 @@
 // ng-app grabs this in index.html
 var app = angular.module('channel', []);
 
-app.controller('channelController', function($scope, $window, $firebase, chatApi, $interval){
+app.controller('channelController', function($scope, $window, $firebase, chatApi, $interval, youtubeEmbedUtils){
 
 	var ref = new Firebase("https://shining-heat-6104.firebaseio.com/");
 	var messages = $firebase(ref);
@@ -39,21 +39,32 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 		'NextVideos': ["Charlie bit my finger", "UCLA floods", "USC is awesome"]
 	};
 
-	// $scope.youtubeUrl = 'https://www.youtube.com/watch?v=HaEbpndntsU&t=0m15s';
-	// $scope.videoCounter = 0;
-	// $scope.youtubeVideos = [
-	// 	'https://www.youtube.com/watch?v=HaEbpndntsU',
-	// 	'https://www.youtube.com/watch?v=nG2rNBFzkGE',
-	// 	'https://www.youtube.com/watch?v=qBcBwOzUlOk'
-	// ];
+	$scope.videoCounter = 0;
+	$scope.youtubeVideos = [
+		'https://www.youtube.com/watch?v=nG2rNBFzkGE',
+		'https://www.youtube.com/watch?v=tPEE9ZwTmy0',
+		'https://www.youtube.com/watch?v=qBcBwOzUlOk',
+		'https://www.youtube.com/watch?v=kfchvCyHmsc',
+		'https://www.youtube.com/watch?v=UPKb9z4l7eM',
+		'https://www.youtube.com/watch?v=HaEbpndntsU'
+	];
+	$scope.youtubeUrl = $scope.youtubeVideos[$scope.videoCounter];
+	$scope.youtubeId = youtubeEmbedUtils.getIdFromURL($scope.youtubeUrl);
 
 	$scope.youtubeVars = {
-		list: 'PLFYnRxXsKaZVOpsTm3YSsqVzqclnq0x8W',
+		// list: 'PLFYnRxXsKaZVOpsTm3YSsqVzqclnq0x8W',
 		controls: 0,
 		autoplay: 1,
 		disablekb: 1,
 		showinfo: 0
 	};
+
+	$scope.$on('youtube.player.ended', function($event, player) {
+		$scope.videoCounter++;
+		if($scope.videoCounter < $scope.youtubeVideos.length) {
+			$scope.youtubeUrl = $scope.youtubeVideos[$scope.videoCounter];
+		}
+	});
 
 
 	$scope.toggleSideBar = function(){
@@ -93,7 +104,7 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 	};
 
 	$scope.submitMessage = function(){
-		
+
 	};
 });
 
