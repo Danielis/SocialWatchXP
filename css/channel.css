@@ -5,21 +5,30 @@ body{
 	/*background-color: #2b2b2b;*/
 }
 img{
-	width: 50%;
-	
+	width: 20%;
+	margin-bottom: 20px;
 }
 #sideBar{
-	width:  15%;
+	width:  5%;
 	background-color: #1c1c1c;
-	height: 45%;
+	height: 40%;
 	position:fixed;
 	/*background-color: #333333;*/
 	float: left;
 	color: white;
-	opacity: 0.5;
+	opacity: 0.0;
 	border-radius: 4px;
 	padding: 10px 10px 10px 10px;
 	/*border-right: 1px white solid;*/
+	margin-top: 0%;
+	margin-left: 95%;
+}
+
+#sideBar:hover{
+	width:  15%;
+	opacity: 0.5;
+	margin-left: 85%;
+
 }
 
 #sideBar div{
@@ -52,8 +61,8 @@ img{
 	float: right;
 	color: white;
 	opacity: 0.5;
-	margin-left: 88%;
-	margin-top: 40%;
+	margin-left: 74%;
+	margin-top: 42%;
 	text-align: center;
 	border-radius: 4px;
 	padding-top: 15px;
@@ -75,8 +84,8 @@ img{
 	float: right;
 	color: white;
 	opacity: 0.5;
-	margin-left: 94%;
-	margin-top: 40%;
+	margin-left: 80%;
+	margin-top: 42%;
 	text-align: center;
 	border-radius: 4px;
 	padding-top: 15px;
@@ -92,21 +101,22 @@ img{
 /*right bar*/
 
 #rightBar{
-	height: 45%;
+	height: 35%;
 	position:fixed;
-	width: 1%;
+	width: 5%;
 	background-color: #333333;
 	float: right;
 	color: white;
 	opacity: 0.0;
-	margin-left: 99%;
+	margin-left: 95%;
+	margin-top: 25%;
 	text-align: center;
 	border-radius: 2px;
-	padding: 10px 10px 10px 10px;
+	padding: 5px 5px 5px 5px;
 }
 
 #rightBar p{
-	margin-top: 20px;
+	margin-top: 10px;
 	font-size: 20px;
 }
 #rightBar div{
@@ -131,7 +141,7 @@ img{
 	background-color: #333333;
 	opacity: 0.75;
 	position: fixed;
-	margin-left: 30%;
+	margin-left: 40%;
 	height:300px;
 	width:350px;
 	border-radius: 4px;
