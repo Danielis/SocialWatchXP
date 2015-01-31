@@ -3,9 +3,16 @@
 // ng-app grabs this in index.html
 var app = angular.module('channel', []);
 
-app.controller('channelController', function($scope, $window, chatApi, $interval){
-	var ref = new Firebase("https://shining-heat-9627.firebaseio.com/");
-	var sync = $firebase(ref);
+app.controller('channelController', function($scope, $window, $firebase, chatApi, $interval){
+
+	var ref = new Firebase("https://shining-heat-6104.firebaseio.com/");
+	var messages = $firebase(ref);
+	// We don't want this here as it pushes this every time controller loads
+	messages.$push(message={text: "TROLLLLOLOLOL",submitter: "Daniel Silva", channel:"Lakers",time: new Date()});
+	// This pulls the entire list of messages
+	$scope.messages = messages.$asObject();
+	// As you can see the push created something with a unqiue identifier so to filter we need channelName and timestamp
+	console.log($scope.messages);
 
 	$scope.channelID= [];
 	$scope.genre = "Comedy";

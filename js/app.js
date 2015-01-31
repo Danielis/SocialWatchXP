@@ -14,9 +14,3 @@ app.config(function($routeProvider) {
 			redirectTo: '/'
 		});
 });
-
-app.run([function ($rootScope, $firebase) {
-	var ref = new Firebase("https://shining-heat-9627.firebaseio.com/");
-	var sync = $firebase(ref);
-	$rootScope.fb = $firebase;
-}]);
