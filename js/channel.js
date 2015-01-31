@@ -4,6 +4,9 @@
 var app = angular.module('channel', []);
 
 app.controller('channelController', function($scope, $window, chatApi, $interval){
+	var ref = new Firebase("https://shining-heat-9627.firebaseio.com/");
+	var sync = $firebase(ref);
+
 	$scope.channelID= [];
 	$scope.genre = "Comedy";
 	$scope.showSideBar = "";
