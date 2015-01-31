@@ -32,10 +32,14 @@
 
     <div id="chatBar">
         <h1>Chat</h1>
-        <input type="text">
-        <button ng-click="submitMessage()" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">
+        <input data-ng-model="inputText" type="text">
+        <button ng-click="submitMessage()" type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
+         <div class="chatMessage" ng-repeat="message in messages">
+        <span class="name"> {{message.submitter}}:</span>
+        <span class="italic">{{message.text}}</span>
+        </div>
     </div>
 
     <!--

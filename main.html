@@ -8,22 +8,21 @@
         
             <div ng-repeat="channel in userData.MyChannels track by $index">
               <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> {{channel}}
-            </div>
-        
+            </div>    
         <h4> Recommended </h4>
-        
             <div ng-repeat="channel in userData.Channels track by $index">
               <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> {{channel}}
             </div>
-        
     </div>
 
     <div style="{{channelStyle}}" id="Content">
       <div class="container">
       <div class="col-sm-4 squarePad" data-ng-repeat="channel in Channels track by $index">
-        <div class="square"><h3>{{channel.title}}</h3></div>
-        http://img.youtube.com/vi/{{channel.youtubeID}}/0.jpg
-        <img src="http://img.youtube.com/vi/{{channel.youtubeID}}/0.jpg">
+        <div class="square"><h3>{{channel.title}}</h3>
+          http://img.youtube.com/vi/{{channel.youtubeID}}/0.jpg
+          <img src="http://img.youtube.com/vi/{{channel.youtubeID}}/0.jpg">
+        </div>
+        
       </div>
     </div>
     </div>

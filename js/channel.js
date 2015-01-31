@@ -10,16 +10,22 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 	// We don't want this here as it pushes this every time controller loads
 	// messages.$push(message={channelName:"Lakers",text: "Welcome!",submitter: "Daniel Silva",time: new Date()});
 	// This pulls the entire list of messages
-	$scope.messages = messages.$asObject();
+	var messageObj = messages.$asObject();
+	$scope.messages = messageObj;
 	// As you can see the push created something with a unqiue identifier so to filter we need channelName and timestamp
 	console.log($scope.messages);
 
-	// messages.$bindTo($scope, "messages").then(function() {
- //   		console.log($scope.messages); // { foo: "bar" }
- //   		// $scope.data.foo = "baz";  // will be saved to Firebase
- //   		//ref.set({foo: "baz"});   // this would update Firebase and $scope.data
-	// });
-	// messages.$remove();
+	messageObj.$bindTo($scope, "messages").then(function() {
+   		console.log($scope.messages); // { foo: "bar" }
+   		// $scope.data.foo = "baz";  // will be saved to Firebase
+   		//ref.set({foo: "baz"});   // this would update Firebase and $scope.data
+	});
+	//messages.$remove();
+
+	$scope.inputText = "";
+	$scope.currentChannel = "Lakers";
+	$scope.currentUser = "Daniel Silva";
+
 
 	$scope.channelID= [];
 	$scope.genre = "Comedy";
@@ -104,7 +110,8 @@ app.controller('channelController', function($scope, $window, $firebase, chatApi
 	};
 
 	$scope.submitMessage = function(){
-
+		messages.$push(message={channelName: $scope.currentChannel,text: $scope.inputText,submitter: $scope.currentUser,time: new Date()});
+		console.log($scope.inputText);
 	};
 });
 
@@ -115,37 +122,3 @@ app.factory('chatApi', function($http){
 		}
 	};
 });
-
-// // controller for the module above
-// app.controller('channelVideoController', function($scope, youtubeApi){
-// 	// Data
-// 	$scope.students = [];
-
-// 	// response contains data, status, headers, config
-// 	gradesApi.all().then(function(response){
-// 		$scope.students = response.data;
-
-// 		$scope.gradeAverage= gradeStats.getAverage($scope.students);
-// 		$scope.gradeHighest = gradeStats.getHighest($scope.students);
-// 		$scope.gradeLowest = gradeStats.getLowest($scope.students);
-// 	});
-
-// 	$scope.$watch('students', function(){
-// 		$scope.gradeAverage = gradeStats.getAverage($scope.students);
-// 	}, true);
-
-// 	$scope.addStudent = function(){
-// 		$scope.students.push($scope.gradeForm);
-
-// 		$scope.gradeForm=  null;
-// 	};
-// });
-
-// // create a custom service called in controller
-// app.factory('youtubeApi', function($http){
-// 	return {
-// 		all: function(){
-// 			return $http.get('');
-// 		}
-// 	}
-// });
