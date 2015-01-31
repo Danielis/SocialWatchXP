@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'main', 'channel', 'firebase']);
+var app = angular.module('app', ['ngRoute', 'main', 'channel', 'firebase', 'youtube-player']);
 
 app.config(function($routeProvider) {
 	$routeProvider
